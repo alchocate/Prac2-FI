@@ -21,7 +21,7 @@ void InitData(){
 	for( i = 0; i < N; i++ ){ 
 		V1[i]=(i<N/2)?(((i*j)%3)?-1:1)*(100.0*(rand()/(1.0*RAND_MAX))):0.0; 
 		V2[i]=(i>=N/2)?(((i*j)%3)?-1:1)*(100.0*(rand()/(1.0*RAND_MAX))):0.0; 
-		V3[i]=(((i*j)%5)?-1:1)*(100.0*(rand()/(1.0*RAND_MAX))); 
+		V3[i]=(((i*j)%5)?-1:1)*(100.0*(rand()/(1.0*RAND_MAX))); //Els vectors tenen 256 valors (la mitad de la matriu)
 	} 
 }
 
@@ -42,15 +42,25 @@ void PrintRow( float mat[N][N], int row, int from, int numel ){
 
 
 
+void  MultEscalar( float vect[N], float vectres[N], float alfa ){
+	int i;
+        for( i = 0; i < N; i++ )
+		vectres[i] = vect[i]*alfa;
 
+
+}
 
 
 
 
 int main(){
+	float vr[N];
+
+
 
 	InitData();
-	//PrintVect( V1, 134, 258 ); //Els vectors tenen 256 valors (la mitad de la matriu) (EXERCICI 1)
+	MultEscalar( V1, vr, 100 );
+	PrintVect( vr, 0, 20 ); //(EXERCICI 1)
 	//PrintRow( Mat, 45, 1, 4 ); //La funció imprimeix matrius (EXERCICI 2)
 
 }
