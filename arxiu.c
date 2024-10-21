@@ -6,8 +6,6 @@
 float Mat[N][N], MatDD[N][N], V1[N], V2[N], V3[N], V4[N];
 
 
-
-
 void InitData(){ 
 	int i,j; 
 	srand(334411); 
@@ -28,7 +26,20 @@ void InitData(){
 }
 
 
+void PrintVect( float vect[N], int from, int numel ){
+	int i;
+	for( i = from; i < numel; i++ )
+		printf( "%f,", vect[i] );
+}
+
+
+
 int main(){
 
-printf( "Lechuga" );
+	InitData();
+	PrintVect( V1, 134, 258 ); //Els vectors tenen 256 valors (la mitad de la matriu)
+
+
+
+
 }
