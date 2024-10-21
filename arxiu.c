@@ -26,20 +26,31 @@ void InitData(){
 }
 
 
-void PrintVect( float vect[N], int from, int numel ){
+void PrintVect( float vect[N], int from, int numel ){//EXERCICI 1
 	int i;
-	for( i = from; i < numel; i++ )
-		printf( "%f,", vect[i] );
+	for( i = from; i < numel; i++ ) //Aquesta comanda s'executarà des d'un numero donat fins a altre
+		printf( "%f,", vect[i] );//Imprimirà el numero a la posició del vector i una coma
 }
+
+
+void PrintRow( float mat[N][N], int row, int from, int numel ){
+	int i,j;
+	for( j = row, i = from; i < numel; i++ ) //Aquesta comanda s'executarà des d'un numero donat fins a altre
+		printf( "%f,", mat[i][j] ); //Imprimirà en una fila especificada, en un rang específic
+
+}
+
+
+
+
+
 
 
 
 int main(){
 
 	InitData();
-	PrintVect( V1, 134, 258 ); //Els vectors tenen 256 valors (la mitad de la matriu)
-
-
-
+	//PrintVect( V1, 134, 258 ); //Els vectors tenen 256 valors (la mitad de la matriu) (EXERCICI 1)
+	//PrintRow( Mat, 45, 1, 4 ); //La funció imprimeix matrius (EXERCICI 2)
 
 }
