@@ -32,35 +32,69 @@ void PrintVect( float vect[N], int from, int numel ){//EXERCICI 1
 		printf( "%f,", vect[i] );//Imprimirà el numero a la posició del vector i una coma
 }
 
-
-void PrintRow( float mat[N][N], int row, int from, int numel ){
-	int i,j;
-	for( j = row, i = from; i < numel; i++ ) //Aquesta comanda s'executarà des d'un numero donat fins a altre
-		printf( "%f,", mat[i][j] ); //Imprimirà en una fila especificada, en un rang específic
-
+void PrintRow( float mat[N][N], int row, int from, int numel ) {
+    	int i;
+    	for (i = from; i < numel; i++) //Es diu des d'on fins on
+        	printf("%f,", mat[row][i]); //Imprimeix els resultats de la fila des de from fins numel
 }
-
 
 
 void  MultEscalar( float vect[N], float vectres[N], float alfa ){
 	int i;
         for( i = 0; i < N; i++ )
 		vectres[i] = vect[i]*alfa;
-
+		
 
 }
 
 
-
+float Scalar(float vect1[N], float vect2[N]) {
+    	float res = 0;
+    	for (int i = 0; i < N; i++) {
+        	res += vect1[i] * vect2[i]; 
+	}
+	printf("%f", res);
+}
 
 int main(){
 	float vr[N];
-
-
-
 	InitData();
-	MultEscalar( V1, vr, 100 );
-	PrintVect( vr, 0, 20 ); //(EXERCICI 1)
-	//PrintRow( Mat, 45, 1, 4 ); //La funció imprimeix matrius (EXERCICI 2)
+//A
+/*
+	PrintVect(V1, 0, 10);
+	printf("\n");
+        PrintVect(V1, 256, 266);
+        printf("\n");
+        PrintVect(V2, 0, 10);
+        printf("\n");
+        PrintVect(V2, 256, 266);
+        printf("\n");
+        PrintVect(V3, 0, 10);
+        printf("\n");
+        PrintVect(V3, 256, 266);
+        printf("\n");
+*/
+//B
+/*
+	PrintRow(Mat, 0, 0, 10);
+        printf("\n");
+        PrintRow(Mat, 100, 0, 10);
+*/
+//C
+/*      PrintRow(MatDD, 0, 0, 10);
+        printf("\n");
+        PrintRow(MatDD, 100, 90, 100);
+        printf("\n");
+*/
 
+
+
+
+//E
+	Scalar(V1, V2);
+	printf("\n");
+        Scalar(V1, V3);
+        printf("\n");
+        Scalar(V2, V3);
+        printf("\n");
 }
