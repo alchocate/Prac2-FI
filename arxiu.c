@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <math.h>
 #define N 512
 
 float Mat[N][N], MatDD[N][N], V1[N], V2[N], V3[N], V4[N];
@@ -51,10 +51,22 @@ void  MultEscalar( float vect[N], float vectres[N], float alfa ){
 float Scalar(float vect1[N], float vect2[N]) {
     	float res = 0;
     	for (int i = 0; i < N; i++) {
-        	res += vect1[i] * vect2[i]; 
+        	res += vect1[i] * vect2[i]; //S'afegeix al resultat la multiplicació entre les posicions dels vectors
 	}
 	printf("%f", res);
 }
+
+
+float Magnitude( float vect[N] ){
+	float res = 0;
+	for (int i = 0; i < N; i++){
+		res += vect[i]*vect[i]; //Es fa el sumatori de quadrats de totes les posicions
+	}
+	res = sqrt(res); //Es fa l'arrel quadrada del total
+	printf("%f", res);
+}
+
+
 
 int main(){
 	float vr[N];
@@ -91,10 +103,22 @@ int main(){
 
 
 //E
+/*
 	Scalar(V1, V2);
 	printf("\n");
         Scalar(V1, V3);
         printf("\n");
         Scalar(V2, V3);
         printf("\n");
+*/
+//F
+	Magnitude(V1);
+        printf("\n");
+        Magnitude(V2);
+        printf("\n");
+        Magnitude(V3);
+        printf("\n");
+
 }
+
+
