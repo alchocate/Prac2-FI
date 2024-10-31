@@ -115,6 +115,21 @@ float Infininorm( float M[N][N] ){ //EXERCICI 8
 }
 
 
+float Onenorm( float M[N][N] ){ //EXERCICI 8
+
+        int i, j;
+        float max, num;
+        max = 0; //La  variable max anirà guardant el resultat més gran
+        for (i = 0; i < N; i++)
+                num = 0;
+                for (j = 0; j < N; j++)
+                        num += fabs( M[j][i] ); //La funció fabs permet fer el valor absolut de cada nombre
+                if (num > max) //Si el sumatori d'una columna es major que el màxim
+                max = num; //El màxim passa a ser aquest sumatori
+        printf( "%f\n", max);
+}
+
+
 
 
 
@@ -177,7 +192,7 @@ int main(){
 
 
 	Infininorm( Mat );
-
+	Onenorm( Mat );
 
 
 
