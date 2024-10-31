@@ -70,8 +70,7 @@ float Magnitude( float vect[N] ){ //EXERCICI 5
 
 
 int Ortogonal( float vect1[N], float vect2[N] ){ //EXERCICI 6
-	int res;
-	int ortogonal;
+	int res, ortogonal;
 	res = Scalar(vect1, vect2); 
 	if (res == 0){
 		ortogonal = 1;
@@ -115,7 +114,7 @@ float Infininorm( float M[N][N] ){ //EXERCICI 8
 }
 
 
-float Onenorm( float M[N][N] ){ //EXERCICI 8
+float Onenorm( float M[N][N] ){ //EXERCICI 9
 
         int i, j;
         float max, num;
@@ -127,6 +126,17 @@ float Onenorm( float M[N][N] ){ //EXERCICI 8
                 if (num > max) //Si el sumatori d'una columna es major que el màxim
                 max = num; //El màxim passa a ser aquest sumatori
         printf( "%f\n", max);
+}
+
+
+float NormFrobenius( float M[N][N] ){ //EXERCICI 10
+	int i, j;
+        float num;
+        for (j = 0; j < N; j++)
+                for (i = 0; i < N; i++)
+                        num += ( M[j][i] ) * ( M[j][i] );
+	num = sqrt( num );
+	printf( "%f\n", num );
 }
 
 
@@ -193,7 +203,7 @@ int main(){
 
 	Infininorm( Mat );
 	Onenorm( Mat );
-
+	NormFrobenius( Mat );
 
 
 }
