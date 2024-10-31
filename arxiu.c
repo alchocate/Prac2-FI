@@ -100,16 +100,17 @@ void  Projection( float vect1[N], float vect2[N], float vectres[N] ){ //EXERCICI
 
 
 float Infininorm( float M[N][N] ){ //EXERCICI 8
-
 	int i, j;
-	float max, num;
-	max = 0; //La  variable max anirà guardant el resultat més gran
-        for (j = 0; j < N; j++) 
-		num = 0;
-		for (i = 0; i < N; i++)
-			num += fabs( M[j][i] ); //La funció fabs permet fer el valor absolut de cada nombre
-		if (num > max) //Si el sumatori d'una fila es major que el màxim
-		max = num; //El màxim passa a ser aquest sumatori
+	float max = 0; //La  variable max anirà guardant el resultat més gran
+        for (j = 0; j < N; j++){
+		float num = 0;
+		for (i = 0; i < N; i++){
+			num +=  fabs( M[j][i] ); //La funció fabs permet fer el valor absolut de cada nombre
+		}
+		if (num > max){ //Si el sumatori d'una fila es major que el màxim
+			max = num; //El màxim passa a ser aquest sumatori
+		}
+	}
 	printf( "%f\n", max);
 }
 
@@ -117,14 +118,17 @@ float Infininorm( float M[N][N] ){ //EXERCICI 8
 float Onenorm( float M[N][N] ){ //EXERCICI 9
 
         int i, j;
-        float max, num;
-        max = 0; //La  variable max anirà guardant el resultat més gran
-        for (i = 0; i < N; i++)
-                num = 0;
-                for (j = 0; j < N; j++)
+        float max = 0; //La  variable max anirà guardant el resultat més gran
+
+        for (i = 0; i < N; i++){
+                float num = 0;
+                for (j = 0; j < N; j++){
                         num += fabs( M[j][i] ); //La funció fabs permet fer el valor absolut de cada nombre
-                if (num > max) //Si el sumatori d'una columna es major que el màxim
-                max = num; //El màxim passa a ser aquest sumatori
+		}
+                if (num > max){ //Si el sumatori d'una columna es major que el màxim
+                	max = num; //El màxim passa a ser aquest sumatori
+		}
+	}
         printf( "%f\n", max);
 }
 
@@ -134,7 +138,7 @@ float NormFrobenius( float M[N][N] ){ //EXERCICI 10
         float num;
         for (j = 0; j < N; j++)
                 for (i = 0; i < N; i++)
-                        num += ( M[j][i] ) * ( M[j][i] );
+                        num += ( M[i][j] ) * ( M[i][j] );
 	num = sqrt( num );
 	printf( "%f\n", num );
 }
@@ -157,17 +161,22 @@ int main(){
         PrintVect(V3, 0, 10);
         PrintVect(V3, 256, 266);
 */
+
 //B
 /*
 	PrintRow(Mat, 0, 0, 10);
         PrintRow(Mat, 100, 0, 10);
 */
+
 //C
 /*      PrintRow(MatDD, 0, 0, 10);
         PrintRow(MatDD, 100, 90, 100);
 */
 
-
+//D
+	Infininorm( Mat );
+        Onenorm( Mat );
+        NormFrobenius( Mat );
 
 
 //E
@@ -196,14 +205,15 @@ int main(){
         Ortogonal(V2,V3);
 */
 
-	//Projection(V1, V3, vr);
-	//PrintVect(vr, 0, 100);
-	//Projection(V3, V2, vr);
+//I
+	//Projection(V2, V3, vr);
+	//PrintVect(vr, 0, 10);
+	//Projection(V1, V2, vr);
+        //PrintVect(vr, 0, 10);
 
-
-	Infininorm( Mat );
-	Onenorm( Mat );
-	NormFrobenius( Mat );
+	//Infininorm( Mat );
+	//Onenorm( Mat );
+	//NormFrobenius( Mat );
 
 
 }
