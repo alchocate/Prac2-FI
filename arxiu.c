@@ -100,6 +100,21 @@ void  Projection( float vect1[N], float vect2[N], float vectres[N] ){ //EXERCICI
 
 
 
+float Infininorm( float M[N][N] ){ //EXERCICI 8
+
+	int i, j;
+	float max, num;
+	max = 0; //La  variable max anirà guardant el resultat més gran
+        for (j = 0; j < N; j++) 
+		num = 0;
+		for (i = 0; i < N; i++)
+			num += fabs( M[j][i] ); //La funció fabs permet fer el valor absolut de cada nombre
+		if (num > max) //Si el sumatori d'una fila es major que el màxim
+		max = num; //El màxim passa a ser aquest sumatori
+	printf( "%f\n", max);
+}
+
+
 
 
 
@@ -156,11 +171,16 @@ int main(){
         Ortogonal(V2,V3);
 */
 
-	Projection(V1, V3, vr);
-	PrintVect(vr, 0, 100);
+	//Projection(V1, V3, vr);
+	//PrintVect(vr, 0, 100);
 	//Projection(V3, V2, vr);
+
+
+	Infininorm( Mat );
+
+
+
+
 }
 
 
-
-	
