@@ -31,16 +31,18 @@ void PrintVect( float vect[N], int from, int numel ){//EXERCICI 1
 	int i;
 	for( i = from; i < numel; i++ ) //Aquesta comanda s'executarà des d'un numero donat fins a altre
 		printf( "%f,", vect[i] );//Imprimirà el numero a la posició del vector i una coma
+	printf( "\n" );
 }
 
-void PrintRow( float mat[N][N], int row, int from, int numel ) {
+void PrintRow( float mat[N][N], int row, int from, int numel ) { //EXERCICI 2
     	int i;
     	for (i = from; i < numel; i++) //Es diu des d'on fins on
         	printf("%f,", mat[row][i]); //Imprimeix els resultats de la fila des de from fins numel
+	printf( "\n" );
 }
 
 
-void  MultEscalar( float vect[N], float vectres[N], float alfa ){
+void  MultEscalar( float vect[N], float vectres[N], float alfa ){ //EXERCICI 3
 	int i;
         for( i = 0; i < N; i++ )
 		vectres[i] = vect[i]*alfa; //Multiplica cada posició del vector pel mateix nombre
@@ -48,7 +50,7 @@ void  MultEscalar( float vect[N], float vectres[N], float alfa ){
 }
 
 
-float Scalar(float vect1[N], float vect2[N]) {
+float Scalar(float vect1[N], float vect2[N]) { //EXERCICI 4
     	float res = 0;
     	for (int i = 0; i < N; i++) {
         	res += vect1[i] * vect2[i]; //S'afegeix al resultat la multiplicació entre les posicions dels vectors
@@ -57,17 +59,17 @@ float Scalar(float vect1[N], float vect2[N]) {
 }
 
 
-float Magnitude( float vect[N] ){
+float Magnitude( float vect[N] ){ //EXERCICI 5
 	float res = 0;
 	for (int i = 0; i < N; i++){
 		res += vect[i]*vect[i]; //Es fa el sumatori de quadrats de totes les posicions
 	}
-	return sqrt(res); //Es fa l'arrel quadrada del total
-	
+	res = sqrt(res); //Es fa l'arrel quadrada del total
+	return res;
 }
 
 
-int Ortogonal( float vect1[N], float vect2[N] ){
+int Ortogonal( float vect1[N], float vect2[N] ){ //EXERCICI 6
 	int res;
 	int ortogonal;
 	res = Scalar(vect1, vect2); 
@@ -79,58 +81,50 @@ int Ortogonal( float vect1[N], float vect2[N] ){
 	printf("%d\n", ortogonal);
 }
 
-void  Projection( float vect1[N], float vect2[N], float vectres[N] ){
-	float escalar;
-	float magnitud;
+
+void  Projection( float vect1[N], float vect2[N], float vectres[N] ){ //EXERCICI 7
+	float escalar, magnitud;
 	escalar = Scalar(vect1, vect2);
 	magnitud = Magnitude (vect2);
-	magnitud = magnitud*magnitud;
 	if (magnitud != 0){
 		float x = escalar / magnitud;
-		for (int i = 0; i < N; i++){
+		for (int i = 0; i < N; i++)
 			vectres[i] = x * vect2[i];
-		}
-	}else{
-		for (int i = 0; i < N; i++){
+	}
+	else{
+		for (int i = 0; i < N; i++)
 			vectres[i] = 0;
 
-		}
-	}
-	for (int i = 0; i < 10; i++){
-	printf("%f\n", vectres[i]);
 	}
 }
 
 
+
+
+
+
+
+
 int main(){
-	float vr[N];
+	float vr[N], x;
 	InitData();
 //A
 /*
 	PrintVect(V1, 0, 10);
-	printf("\n");
         PrintVect(V1, 256, 266);
-        printf("\n");
         PrintVect(V2, 0, 10);
-        printf("\n");
         PrintVect(V2, 256, 266);
-        printf("\n");
         PrintVect(V3, 0, 10);
-        printf("\n");
         PrintVect(V3, 256, 266);
-        printf("\n");
 */
 //B
 /*
 	PrintRow(Mat, 0, 0, 10);
-        printf("\n");
         PrintRow(Mat, 100, 0, 10);
 */
 //C
 /*      PrintRow(MatDD, 0, 0, 10);
-        printf("\n");
         PrintRow(MatDD, 100, 90, 100);
-        printf("\n");
 */
 
 
@@ -138,20 +132,22 @@ int main(){
 
 //E
 /*
-	Scalar(V1, V2);
-	printf("\n");
-        Scalar(V1, V3);
-        printf("\n");
-        Scalar(V2, V3);
-        printf("\n");
+	x = Scalar(V1, V2);
+	printf( "%f\n", x);
+
+        x = Scalar(V1, V3);
+	printf( "%f\n", x);
+
+        x = Scalar(V2, V3);
+	printf( "%f\n", x);
 
 //F
-	Magnitude(V1);
-        printf("\n");
-        Magnitude(V2);
-        printf("\n");
-        Magnitude(V3);
-        printf("\n");
+	x = Magnitude(V1);
+	printf( "%f\n", x);
+        x = Magnitude(V2);
+	printf( "%f\n", x);
+        x = Magnitude(V3);
+	printf( "%f\n", x);
 */
 //G
 /*
@@ -160,8 +156,9 @@ int main(){
         Ortogonal(V2,V3);
 */
 
-	Projection(V1, V2, vr);
-	Projection(V3, V2, vr);
+	Projection(V1, V3, vr);
+	PrintVect(vr, 0, 100);
+	//Projection(V3, V2, vr);
 }
 
 
