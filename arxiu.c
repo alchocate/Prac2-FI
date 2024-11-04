@@ -146,22 +146,21 @@ float NormFrobenius( float M[N][N] ){ //EXERCICI 10
 
 int DiagonalDom( float M[N][N] ){ //EXERCICI 11
         int i, j;
-        float diag, nodiag;
+	int diagonaldominant = 1;
         for (i = 0; i < N; i++){
+		float diag = fabs(M[i][i]);
+		float nodiag = 0;
                 for (j = 0; j < N; j++){
-                        if ( i == j ){
-				diag += fabs( M[i][j] );
-			}else{
-				nodiag += fabs( M[i][j] );
-                	}
+			if(i != j){
+			nodiag += fabs(M[i][j]);
+			}
+                if ( diag < nodiag ){
+			diagonaldominant = 0;
+			
+			}
 		}
         }
-        if ( diag >= nodiag ){
-		printf( "La matriu MatDD és diagonal dominant\n" );
-	}else{
-		printf( "La matriu MatDD NO és diagonal dominant\n" );
-	}
-
+        printf("%i\n", diagonaldominant);
 }
 
 
@@ -196,15 +195,16 @@ int main(){
 */
 
 //D
-	//Infininorm( Mat );
-        //Onenorm( Mat );
-        //NormFrobenius( Mat );
-        //DiagonalDom( Mat );
-	//Infininorm( MatDD );
-        //Onenorm( MatDD );
-        //NormFrobenius( MatDD );
-	//DiagonalDom( MatDD );
-
+/*
+	Infininorm( Mat );
+        Onenorm( Mat );
+        NormFrobenius( Mat );
+        DiagonalDom( Mat );
+	Infininorm( MatDD );
+        Onenorm( MatDD );
+        NormFrobenius( MatDD );
+	DiagonalDom( MatDD );
+*/
 //E
 /*
 	x = Scalar(V1, V2);
