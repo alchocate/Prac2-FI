@@ -30,7 +30,7 @@ for( i = 0; i < N; i++ )
 void PrintVect( float vect[N], int from, int numel ){//EXERCICI 1
 	int i;
 	for( i = from; i < numel; i++ ) //Aquesta comanda s'executarà des d'un numero donat fins a altre
-		printf( "%f,", vect[i] );//Imprimirà el numero a la posició del vector i una coma
+		printf( "%f  ", vect[i] );//Imprimirà el numero a la posició del vector i una coma
 	printf( "\n" );
 }
 
@@ -160,11 +160,20 @@ int DiagonalDom( float M[N][N] ){ //EXERCICI 11
 			}
 		}
         }
-        printf("%i\n", diagonaldominant);
+	if (diagonaldominant){
+		printf( "La matriu MatDD és diagonal dominant\n" );
+	}else{
+		printf( "La matriu MatDD NO és diagonal dominant\n" );
+        }
 }
 
 
-
+void Matriu_x_Vector( float M[N][N], float vect[N], float vectres[N] ){ //EXERCICI 12
+	int i, j;
+	for ( j=0; j<N; j++ )
+		for ( i=0; i<N; i++ )
+			vectres[j] += M[j][i]*vect[i];
+}
 
 
 
@@ -240,6 +249,12 @@ int main(){
 	//Infininorm( Mat );
 	//Onenorm( Mat );
 	//NormFrobenius( Mat );
+
+
+
+	Matriu_x_Vector( Mat, V2, vr );
+	PrintVect(vr, 0, 10);
+
 
 
 }
