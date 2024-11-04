@@ -175,7 +175,45 @@ void Matriu_x_Vector( float M[N][N], float vect[N], float vectres[N] ){ //EXERCI
 			vectres[j] += M[j][i]*vect[i];
 }
 
+int Jacobi( float M[N][N] , float vect[N], float vectres[N], unsigned iter ){
+        int i;
+        int j;
+        int k;
+        float x[N];
+        for ( i = 0; i < N;  i++){
+                 vect[i] = 0;
+        }
 
+        for (k = 0; k < iter; k++){
+                for(i = 0; i < N; i++){
+                        float suma = 0;
+                        for(j = 0; j < N; j++){
+                                if (j != i){
+                                        suma += M[i][j]*vect[j];
+                                }
+                        }
+                        if(M[i][i] == 0){
+                                printf("Error divisió per 0\n");
+                        }
+                        else{
+                                x[i] = (vectres[i] - suma) / M[i][i];
+                        }
+
+                }
+                float diferencia = 0;
+                for (int i = 0; i < N; i++){
+                        diferencia = fmax(diferencia, fabs(x[i] - vect[i]));
+                }
+                for (int i = 0; i < N; i++){
+                        vect[i] = x[i];
+                }
+                printf("Iteració %d: x = [%f, %f, %f, %f, %f,%f,%f,%f,%f,]\n", k+1, vect[0], vect[1], vect[2], vect[3], vect[4], vect[5], vect[6], vect[7], vect[8]);
+
+
+        }
+
+
+}
 
 
 
