@@ -74,10 +74,12 @@ int Ortogonal( float vect1[N], float vect2[N] ){ //EXERCICI 6
 	res = Scalar(vect1, vect2); 
 	if (res == 0){
 		ortogonal = 1;
+	printf("%d, els vectors son ortogonals\n", ortogonal); 
 	}else{
 		ortogonal = 0;
+		printf("%d\n", ortogonal);
 	}
-	printf("%d\n", ortogonal);
+	
 }
 
 
@@ -163,7 +165,7 @@ int DiagonalDom( float M[N][N] ){ //EXERCICI 11
 	if (diagonaldominant){
 		printf( "La matriu MatDD és diagonal dominant\n" );
 	}else{
-		printf( "La matriu MatDD NO és diagonal dominant\n" );
+		printf( "La matriu Mat NO és diagonal dominant\n" );
         }
 }
 
@@ -218,31 +220,31 @@ int Jacobi( float M[N][N] , float vect[N], float vectres[N], unsigned iter ){
 
 
 int main(){
-	float vr[N], x;
+	float vr[N], x, vr2[N];
 	InitData();
-//A
-/*
+printf("Exercici A: Els elements 0 al 9 i 256 al 265 dels vectors V1, V2 i V3\n");
+
 	PrintVect(V1, 0, 10);
         PrintVect(V1, 256, 266);
         PrintVect(V2, 0, 10);
         PrintVect(V2, 256, 266);
         PrintVect(V3, 0, 10);
         PrintVect(V3, 256, 266);
-*/
+	printf("\n");
 
-//B
-/*
+printf("Exercici B: Els elements 0 al 9 de les files 0 i 100 de la matriu Mat.\n");
+
 	PrintRow(Mat, 0, 0, 10);
         PrintRow(Mat, 100, 0, 10);
-*/
+        printf("\n");
 
-//C
-/*      PrintRow(MatDD, 0, 0, 10);
+printf("Exercici C: Els elements 0 al 9 de la fila 0 i 90 a 99 de la fila 100 de la matriu MatDD.\n");
+      	PrintRow(MatDD, 0, 0, 10);
         PrintRow(MatDD, 100, 90, 100);
-*/
+        printf("\n");
 
-//D
-/*
+printf("Exercici D: Per cada matriu (Mat i MatDD) calculareu i visualitzareu: a. La seva Infini-norma b. La seva norma ú c. La seva norma de Frobenius d. Si la matriu és o no diagonal dominant\n");
+
 	Infininorm( Mat );
         Onenorm( Mat );
         NormFrobenius( Mat );
@@ -251,9 +253,10 @@ int main(){
         Onenorm( MatDD );
         NormFrobenius( MatDD );
 	DiagonalDom( MatDD );
-*/
-//E
-/*
+        printf("\n");
+
+printf("Exercici E: Calculareu i visualitzareu els següents productes escalars: a. V1·V2 b. V1·V3 c. V2·V3\n");
+
 	x = Scalar(V1, V2);
 	printf( "%f\n", x);
 
@@ -263,36 +266,41 @@ int main(){
         x = Scalar(V2, V3);
 	printf( "%f\n", x);
 
-//F
+        printf("\n");
+
+printf("Exercici F: Calculareu i visualitzareu la magnitud de V1, V2 i V3\n");
 	x = Magnitude(V1);
 	printf( "%f\n", x);
         x = Magnitude(V2);
 	printf( "%f\n", x);
         x = Magnitude(V3);
 	printf( "%f\n", x);
-*/
-//G
-/*
+        printf("\n");
+
+printf("Exercici G: Calculareu i visualitzareu si V1 és o no ortogonal amb V2 i V3 i si V2 i V3 són ortogonals (totes les combinacions possibles).\n");
+
 	Ortogonal(V1,V2);
 	Ortogonal(V1,V3);
         Ortogonal(V2,V3);
-*/
+        printf("\n");
 
-//I
-	//Projection(V2, V3, vr);
-	//PrintVect(vr, 0, 10);
-	//Projection(V1, V2, vr);
-        //PrintVect(vr, 0, 10);
+printf("Exercici H: Calculareu la multiplicació del vector V3 amb l’escalar 2.0 i visualitzareu els elements 0 al 9 i 256 al 265 del vector resultant.\n");
+	MultEscalar(V3, vr2, 2.0);
+	PrintVect(vr2, 0, 9);
+	PrintVect(vr2, 256, 265);
+        printf("\n");
 
-	//Infininorm( Mat );
-	//Onenorm( Mat );
-	//NormFrobenius( Mat );
-
-
-
+printf("Exercici I: Calculareu la projecció del V2 sobre V3 i visualitzareu els 10 primers\n");
+	Projection(V2, V3, vr);
+	PrintVect(vr, 0, 10);
+	Projection(V1, V2, vr);
+        PrintVect(vr, 0, 10);
+        printf("\n");
+        
+printf("Exercici J: Calculareu la multiplicació de la matriu Mat amb el vector v2 i visualitzareu els 10 primers elements del vector resultant\n");
 	Matriu_x_Vector( Mat, V2, vr );
 	PrintVect(vr, 0, 10);
-
+        printf("\n");
 
 
 }
