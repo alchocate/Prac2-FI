@@ -23,7 +23,7 @@ for( i = 0; i < N; i++ )
 		V1[i]=(i<N/2)?(((i*j)%3)?-1:1)*(100.0*(rand()/(1.0*RAND_MAX))):0.0; 
 		V2[i]=(i>=N/2)?(((i*j)%3)?-1:1)*(100.0*(rand()/(1.0*RAND_MAX))):0.0; 
 		V3[i]=(((i*j)%5)?-1:1)*(100.0*(rand()/(1.0*RAND_MAX))); 
-} 
+	} 
 } 
 
 
@@ -177,45 +177,50 @@ void Matriu_x_Vector( float M[N][N], float vect[N], float vectres[N] ){ //EXERCI
 			vectres[j] += M[j][i]*vect[i];
 }
 
-int Jacobi( float M[N][N] , float vect[N], float vectres[N], unsigned iter ){
-        int i;
-        int j;
-        int k;
-        float x[N];
+
+int Jacobi( float M[N][N] , float vect[N], float vectres[N], unsigned iter ){ //EXERCICI 13
+
+        int i, j, k;
+        float sumatori, vectaux[N];
+
         for ( i = 0; i < N;  i++){
-                 vect[i] = 0;
+                 vectres[i] = 0;
         }
 
-        for (k = 0; k < iter; k++){
-                for(i = 0; i < N; i++){
-                        float suma = 0;
-                        for(j = 0; j < N; j++){
-                                if (j != i){
-                                        suma += M[i][j]*vect[j];
+        for ( k = 0; k < iter; k++ ){ //Aquesta k registra les itineracions
+                for (i = 0; i < N; i++) { 
+                                vectaux[i] = vectres[i]; 
+                }
+
+                for ( j = 0; j < N;  j++){ //La j registra les files
+                        sumatori =0;
+                        for ( i = 0; i < N;  i++){ //La i son les columnes
+                                if ( i!=j ){
+                                        sumatori += ( M[i][j] * vectaux[i] );
                                 }
                         }
-                        if(M[i][i] == 0){
-                                printf("Error divisió per 0\n");
-                        }
-                        else{
-                                x[i] = (vectres[i] - suma) / M[i][i];
-                        }
-
+                        vectres[j] = ( vect[j] - sumatori ) / M[j][j]; 
                 }
-                float diferencia = 0;
-                for (int i = 0; i < N; i++){
-                        diferencia = fmax(diferencia, fabs(x[i] - vect[i]));
-                }
-                for (int i = 0; i < N; i++){
-                        vect[i] = x[i];
-                }
-                printf("Iteració %d: x = [%f, %f, %f, %f, %f,%f,%f,%f,%f,]\n", k+1, vect[0], vect[1], vect[2], vect[3], vect[4], vect[5], vect[6], vect[7], vect[8]);
-
-
         }
 
+	float dife = 0;
+	float diferen = 0;
+	for ( i=0; i<N; i++ ){
+		diferen = fabs(vectres[i] - vectaux[i]);
+		if (diferen > dife){
+			dife = 0;
+			dife = diferen;
+		}
+		diferen = 0;
 
+	}
+	printf("El marge d'error es de %f\n", dife);
 }
+
+
+
+
+
 
 
 
@@ -302,6 +307,11 @@ printf("Exercici J: Calculareu la multiplicació de la matriu Mat amb el vector 
 	PrintVect(vr, 0, 10);
         printf("\n");
 
+printf("Exercici K: Calcularem la solució del sistema d’equacions MatDD*X = V3 pel metode de Jacobi\n");
+	Jacobi( MatDD, V3, vr, 1 );
+	PrintVect( vr, 0, 9 );
+	Jacobi( MatDD, V3, vr, 1000 );
+        PrintVect( vr, 0, 9 );
 
 }
 
